@@ -1,0 +1,142 @@
+.testimonial__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.testimonial__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.testimonial__head h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #462889;
+}
+.testimonial__head h2 {
+  font-size: 2rem;
+  width: 30%;
+}
+.testimonial__head h2 span {
+  color: #462889;
+}
+.testimonial__content {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 1.5rem 1.5rem;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.testimonial h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.testimonial span {
+  font-size: 0.8rem;
+}
+.testimonial__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.testimonial__inner img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.testimonial__inner div p {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.testimonial__inner div span {
+  font-size: 0.8rem;
+}
+
+.testimonail__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.testimonail__controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.testimonail__controls button:hover {
+  background-color: #462889;
+  color: #fff;
+}
+.testimonail__controls button svg {
+  height: 18px;
+  width: 18px;
+}
+
+@media screen and (max-width: 322px) {
+  .testimonial__head h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #462889;
+  }
+  .testimonial__head h2 {
+    font-size: 1.6rem;
+    width: 100%;
+  }
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.2rem;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+}
+
+@media screen and (min-width: 323px) and (max-width: 376px) {
+  .testimonial__head h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #462889;
+  }
+  .testimonial__head h2 {
+    font-size: 1.8rem;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 377px) and (max-width: 426px) {
+  .testimonial__head h2 {
+    font-size: 2rem;
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 427px) and (max-width: 769px) {
+  .testimonial__head h2 {
+    font-size: 2rem;
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .testimonial__head h2 {
+    font-size: 2rem;
+    width: 40%;
+  }
+}

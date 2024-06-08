@@ -1,0 +1,167 @@
+.livemarket__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.livemarket__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.livemarket__head h3 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #462889;
+}
+.livemarket__head h2 {
+  font-size: 2rem;
+  width: 30%;
+}
+.livemarket__head h2 span {
+  color: #462889;
+}
+
+.livemarket__table {
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: #fff;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+.livemarket__table::-webkit-scrollbar {
+  display: none;
+}
+.livemarket__table table {
+  padding: 1rem 1.3rem;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+.livemarket__table th {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  border-top: 1px solid rgb(227, 227, 227);
+  border-bottom: 1px solid rgb(227, 227, 227);
+  border-radius: 10px;
+}
+.livemarket__table td {
+  padding: 1rem 1.3rem;
+  border-top: 1px solid rgb(227, 227, 227);
+  border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+.livemarket__table-coin {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.livemarket__table-coin p {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.livemarket__table-coin span {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.c_price {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.p_chang {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #4fd495;
+}
+
+@media screen and (max-width: 322px) {
+  .livemarket__head h2 {
+    font-size: 1.8rem;
+    width: 100%;
+  }
+  .livemarket__table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.7rem 0.5rem 0.7rem 1rem;
+    border-top: 1px solid rgb(227, 227, 227);
+    border-bottom: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+  }
+  .livemarket__table td p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 323px) and (max-width: 376px) {
+  .livemarket__head h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #462889;
+  }
+  .livemarket__head h2 {
+    font-size: 1.8rem;
+    width: 100%;
+  }
+  .livemarket__table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.7rem 0.5rem 0.7rem 1rem;
+    border-top: 1px solid rgb(227, 227, 227);
+    border-bottom: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+  }
+  .livemarket__table td p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 377px) and (max-width: 426px) {
+  .livemarket__head h2 {
+    font-size: 1.8rem;
+    width: 90%;
+  }
+  .livemarket__table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.7rem 0.5rem 0.7rem 1rem;
+    border-top: 1px solid rgb(227, 227, 227);
+    border-bottom: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+  }
+  .livemarket__table td p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 427px) and (max-width: 769px) {
+  .livemarket__head h2 {
+    font-size: 1.8rem;
+    width: 50%;
+  }
+  .livemarket__table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.7rem 0.5rem 0.7rem 1rem;
+    border-top: 1px solid rgb(227, 227, 227);
+    border-bottom: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+  }
+  .livemarket__table td p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .livemarket__head h2 {
+    font-size: 2rem;
+    width: 40%;
+  }
+}

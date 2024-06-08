@@ -1,0 +1,116 @@
+.activeuser__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.activeuser {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  width: 100%;
+}
+.activeuser h2 {
+  font-weight: 600;
+  font-size: 2rem;
+}
+.activeuser p {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.activeuser div {
+  width: 20%;
+  height: 2px;
+  background-color: #462889;
+}
+.activeuser span {
+  font-size: 0.8rem;
+  width: 80%;
+  text-align: center;
+}
+
+@media screen and (max-width: 322px) {
+  .activeuser__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .activeuser h2 {
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+  .activeuser p {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .activeuser span {
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 323px) and (max-width: 376px) {
+  .activeuser__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .activeuser h2 {
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+  .activeuser p {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .activeuser span {
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 377px) and (max-width: 426px) {
+  .activeuser__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .activeuser h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 427px) and (max-width: 769px) {
+  .activeuser h2 {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  .activeuser p {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  .activeuser span {
+    font-size: 0.7rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .activeuser span {
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+}
