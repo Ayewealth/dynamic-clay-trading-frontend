@@ -1,67 +1,62 @@
 import React, { useContext } from 'react'
 import { CiMenuFries } from 'react-icons/ci';
-// import AuthContext from '../../../../context/AuthContext';
+import AuthContext from '../../../../context/AuthContext';
 import { FaCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
+import { CircularProgress } from '@mui/material';
 
 const Withdraw = ({ handleCloseSidebar }) => {
   const [wallet, setWallet] = useState(1);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
-  const [tvn, setTvn] = useState("");
+  const [loading, setLoading] = useState(false)
 
-  // const { userProfile, authTokens, setShowAlert, setAlertMessage, setAlertSeverity, showAlert, alertSeverity, alertMessage } = useContext(AuthContext)
+  const { userProfile, authTokens, setShowAlert, setAlertMessage, setAlertSeverity, showAlert, alertSeverity, alertMessage } = useContext(AuthContext)
 
-  // const handleDeposit = async (e) => {
-  //   if (tvn) {
-  //     try {
-  //       e.preventDefault()
+  const handleDeposit = async (e) => {
+    setLoading(true)
+    try {
+      e.preventDefault()
 
-  //       const response = await fetch("https://crest-backend.onrender.com/api/transaction/",
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${authTokens.access}`
-  //           },
-  //           body: JSON.stringify({
-  //             transaction_type: "withdrawal",
-  //             wallet: wallet,
-  //             wallet_address: walletAddress,
-  //             amount: amount,
-  //             status: "pending"
-  //           })
-  //         }
-  //       )
-  //       if (response.status === 201) {
-  //         setShowAlert(true)
-  //         setAlertMessage("Waiting For Confirmation");
-  //         setAlertSeverity("success");
-  //       }
-  //       else {
-  //         const errorData = await response.json();
-  //         const errorMessage = errorData.error || "Deposit failed";
-  //         console.log(errorMessage)
-  //         setShowAlert(true);
-  //         setAlertMessage(errorMessage)
-  //         setAlertSeverity("error");
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   else {
-  //     setShowAlert(true);
-  //     setAlertMessage("TVN CAN NOT BE EMPTY!!")
-  //     setAlertSeverity("error");
-  //   }
-
-  // }
-
+      const response = await fetch("http://127.0.0.1:8000/api/transaction/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authTokens.access}`
+          },
+          body: JSON.stringify({
+            transaction_type: "withdrawal",
+            wallet: wallet,
+            wallet_address: walletAddress,
+            amount: amount,
+            status: "pending"
+          })
+        }
+      )
+      if (response.status === 201) {
+        setShowAlert(true)
+        setAlertMessage("Waiting For Confirmation");
+        setAlertSeverity("success");
+      }
+      else {
+        const errorData = await response.json();
+        const errorMessage = errorData.error || "Deposit failed";
+        console.log(errorMessage)
+        setShowAlert(true);
+        setAlertMessage(errorMessage)
+        setAlertSeverity("error");
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <div className='main-container'>
-      {/* {showAlert && (
+      {showAlert && (
         <Alert
           severity={alertSeverity}
           onClose={() => setShowAlert(false)}
@@ -69,7 +64,7 @@ const Withdraw = ({ handleCloseSidebar }) => {
         >
           {alertMessage}
         </Alert>
-      )} */}
+      )}
       <header className='main-container-nav'>
         <div className='close-sider-button' onClick={handleCloseSidebar} >
           <CiMenuFries />
@@ -77,8 +72,7 @@ const Withdraw = ({ handleCloseSidebar }) => {
         <div className="heading">
           <h2>Hello,</h2>
           <div>
-            <h2>John</h2>
-            <h2>Doe</h2>
+            <h2>{userProfile && userProfile.user.full_name}</h2>
           </div>
           👋
         </div>
@@ -94,9 +88,9 @@ const Withdraw = ({ handleCloseSidebar }) => {
             <div className="deposit__container-deposit-inner">
               <label>Wallets:</label>
               <select value={wallet} onChange={(e) => setWallet(e.target.value)}>
-                {/* {userProfile && userProfile.wallets.map((wallet) => (
+                {userProfile && userProfile.wallets.map((wallet) => (
                   <option value={wallet.id} key={wallet.id}>{wallet.title}</option>
-                ))} */}
+                ))}
               </select>
             </div>
             <div className="deposit__container-deposit-inner">
@@ -107,13 +101,13 @@ const Withdraw = ({ handleCloseSidebar }) => {
               <label>Withdrawal Amount:</label>
               <input type="text" placeholder='Enter Amount' value={amount} onChange={(e) => setAmount(e.target.value)} />
             </div>
-            <div className="deposit__container-deposit-inner">
-              <label>TVN Number:</label>
-              <input type="text" placeholder='Enter Tvn Number' value={tvn} onChange={(e) => setTvn(e.target.value)} />
-            </div>
 
             <div className="deposit__container-deposit-inner-btn">
-              <button onClick={{}}>Withdraw</button>
+              <button onClick={handleDeposit}>
+                {loading ? (
+                  <CircularProgress color="inherit" size="20px" />
+                ) : "Withdraw"}
+              </button>
             </div>
 
             <div className='deposit__container-deposit-tips'>

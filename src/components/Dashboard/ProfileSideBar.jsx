@@ -1,20 +1,19 @@
 import React, { useContext } from 'react'
 
 import "./ProfileBar.css"
-// import AuthContext from '../../context/AuthContext'
+import AuthContext from '../../context/AuthContext'
 import { Link } from 'react-router-dom'
 
 const ProfileSideBar = () => {
-  // const { userProfile, } = useContext(AuthContext)
+  const { userProfile, } = useContext(AuthContext)
 
   return (
     <div className='profile__sidebar right-sidebar'>
       <div className="profile-bar__container">
         <div className='profile-bar__head'>
-          <img src="/images/banner2.jpg" alt="Profile__Picture" width={100} />
+          <img src={userProfile && userProfile.user.profile_picture} alt="Profile__Picture" width={100} />
           <div className='user__name'>
-            <h2>John</h2>
-            <h2>Doe</h2>
+            <p>{userProfile && userProfile.user.full_name}</p>
           </div>
           <Link to={"setting"}>
             Edit Profile
@@ -24,22 +23,22 @@ const ProfileSideBar = () => {
           <h3>Account</h3>
           <div>
             <p>Joined</p>
-            <span>April 5, 2024</span>
+            <span>{userProfile && userProfile.user.date_joined}</span>
           </div>
           <div>
             <p>Assets Value</p>
-            <span>$1000</span>
+            <span>${userProfile && userProfile.total_wallet_balance}</span>
           </div>
         </div>
         <div className='profile-bar__design' />
         <div className='profile-bar__assets'>
           <h3>Assets</h3>
-          {/* {userProfile && userProfile.wallets.map((wallet) => ( */}
-          <div>
-            <p>Bitcoin</p>
-            <span>$1000</span>
-          </div>
-          {/* ))} */}
+          {userProfile && userProfile.wallets.map((wallet) => (
+            <div key={wallet.id}>
+              <p>{wallet.title}</p>
+              <span>${wallet.balance}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

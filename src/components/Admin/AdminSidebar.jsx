@@ -6,13 +6,16 @@ import { IoLogOut } from "react-icons/io5";
 
 import './AdminSidebar.css';
 import { CiMenuFries } from 'react-icons/ci';
-// import AuthContext from '../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
+
 
 const SidebarMenu = ({ closebar, handleCloseSidebar }) => {
+    const { logoutUser } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        logoutUser()
         navigate("/")
     }
 
@@ -49,7 +52,7 @@ const SidebarMenu = ({ closebar, handleCloseSidebar }) => {
                             <span className={closebar ? 'sidebar-link-close' : 'sidebar-link-span'}>Transactions</span>
                         </NavLink>
 
-                        <div className='logout-btn' onClick={{}}>
+                        <div className='logout-btn' onClick={handleLogout}>
                             <IoLogOut />
                             <span className={closebar ? 'sidebar-link-close' : 'sidebar-link-span'}>Logout</span>
                         </div>

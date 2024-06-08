@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CircleX } from 'lucide-react';
 import { AlignLeft } from 'lucide-react';
 
 import "./Nav.css"
+import AuthContext from '../../../context/AuthContext';
 
 const Navbar = () => {
     const [isScrollHeader, setIsScrollHeader] = useState(false);
     const [removeMenu, setShowMenu] = useState('remove-menu')
+
+    const { user, logoutUser } = useContext(AuthContext)
 
     const handleScrollHeader = () => {
         if (window.scrollY >= 80) {
@@ -62,12 +65,23 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="nav__auth">
-                        <Link to="/login">
-                            Login
-                        </Link>
-                        <Link to="/register">
-                            <button>Register</button>
-                        </Link>
+                        {user ? (
+                            <>
+                                <Link to="/dashboard/home">
+                                    Dashboard
+                                </Link>
+                                <button onClick={logoutUser}>Logout</button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login">
+                                    Login
+                                </Link>
+                                <Link to="/register">
+                                    <button>Register</button>
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

@@ -7,79 +7,84 @@ import { CiMenuFries } from 'react-icons/ci'
 import Alert from '@mui/material/Alert';
 
 import "./Deposit.css"
-// import AuthContext from '../../../../context/AuthContext'
+import AuthContext from '../../../../context/AuthContext'
+import { CircularProgress } from '@mui/material';
 
 const Deposit = ({ handleCloseSidebar }) => {
   const [wallet, setWallet] = useState(1);
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false)
 
-  // const { userProfile, authTokens, setAlertSeverity, setAlertMessage, setShowAlert, showAlert, alertSeverity, alertMessage } = useContext(AuthContext)
+  const { userProfile, authTokens, setAlertSeverity, setAlertMessage, setShowAlert, showAlert, alertSeverity, alertMessage } = useContext(AuthContext)
 
-  // const handleDeposit = async (e) => {
-  //   try {
-  //     e.preventDefault()
+  const handleDeposit = async (e) => {
+    setLoading(true)
+    try {
+      e.preventDefault()
 
-  //     const response = await fetch("https://crest-backend.onrender.com/api/transaction/",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${authTokens.access}`
-  //         },
-  //         body: JSON.stringify({
-  //           transaction_type: "deposit",
-  //           wallet: wallet,
-  //           amount: amount,
-  //           status: "pending"
-  //         })
-  //       }
-  //     )
-  //     if (response.status === 201) {
-  //       setShowAlert(true)
-  //       setAlertMessage("Waiting For Confirmation");
-  //       setAlertSeverity("success");
-  //     }
-  //     else {
-  //       const errorData = await response.json();
-  //       const errorMessage = errorData.error || "Deposit failed";
-  //       console.log(errorMessage)
-  //       setShowAlert(true);
-  //       setAlertMessage(errorMessage)
-  //       setAlertSeverity("error");
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+      const response = await fetch("http://127.0.0.1:8000/api/transaction/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authTokens.access}`
+          },
+          body: JSON.stringify({
+            transaction_type: "deposit",
+            wallet: wallet,
+            amount: amount,
+            status: "pending"
+          })
+        }
+      )
+      if (response.status === 201) {
+        setShowAlert(true)
+        setAlertMessage("Waiting For Confirmation");
+        setAlertSeverity("success");
+      }
+      else {
+        const errorData = await response.json();
+        const errorMessage = errorData.error || "Deposit failed";
+        console.log(errorMessage)
+        setShowAlert(true);
+        setAlertMessage(errorMessage)
+        setAlertSeverity("error");
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  // useEffect(() => {
-  //   let timeoutId;
+  useEffect(() => {
+    let timeoutId;
 
-  //   if (copied) {
-  //     timeoutId = setTimeout(() => {
-  //       setCopied(!copied);
-  //     }, 3000);
-  //   }
+    if (copied) {
+      timeoutId = setTimeout(() => {
+        setCopied(!copied);
+      }, 3000);
+    }
 
 
-  //   if (wallet) {
-  //     if (userProfile) {
-  //       const selectedWallet = userProfile.wallets.find(item => item.id === parseInt(wallet));
-  //       if (selectedWallet) {
-  //         setWalletAddress(selectedWallet.wallet_address);
-  //       }
-  //     }
-  //   }
-  //   return () => {
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, [wallet, userProfile, copied]);
+    if (wallet) {
+      if (userProfile) {
+        const selectedWallet = userProfile.wallets.find(item => item.id === parseInt(wallet));
+        if (selectedWallet) {
+          setWalletAddress(selectedWallet.wallet_address);
+        }
+      }
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [wallet, userProfile, copied]);
 
   return (
     <div className='main-container'>
-      {/* {showAlert && (
+      {showAlert && (
         <Alert
           severity={alertSeverity}
           onClose={() => setShowAlert(false)}
@@ -87,7 +92,7 @@ const Deposit = ({ handleCloseSidebar }) => {
         >
           {alertMessage}
         </Alert>
-      )} */}
+      )}
       <header className='main-container-nav'>
         <div className='close-sider-button' onClick={handleCloseSidebar} >
           <CiMenuFries />
@@ -95,8 +100,7 @@ const Deposit = ({ handleCloseSidebar }) => {
         <div className="heading">
           <h2>Hello,</h2>
           <div>
-            <h2>John</h2>
-            <h2>Doe</h2>
+            <h2>{userProfile && userProfile.user.full_name}</h2>
           </div>
           👋
         </div>
@@ -112,9 +116,9 @@ const Deposit = ({ handleCloseSidebar }) => {
             <div className="deposit__container-deposit-inner">
               <label>Wallets:</label>
               <select value={wallet} onChange={(e) => setWallet(e.target.value)}>
-                {/* {userProfile && userProfile.wallets.map((wallet) => (
+                {userProfile && userProfile.wallets.map((wallet) => (
                   <option value={wallet.id} key={wallet.id}>{wallet.title}</option>
-                ))} */}
+                ))}
               </select>
             </div>
             <div className="deposit__container-deposit-inner">
@@ -134,7 +138,11 @@ const Deposit = ({ handleCloseSidebar }) => {
             </div>
 
             <div className="deposit__container-deposit-inner-btn">
-              <button onClick={{}}>Deposit</button>
+              <button onClick={handleDeposit}>
+                {loading ? (
+                  <CircularProgress color="inherit" size="20px" />
+                ) : "Deposit"}
+              </button>
             </div>
 
             <div className='deposit__container-deposit-tips'>

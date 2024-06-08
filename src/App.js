@@ -7,24 +7,27 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
 
-          {/* Private Route */}
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard/*" element={<Dashboard />} />
-            <Route path="/admin/*" element={<AdminDashboard />} />
-          </Route>
-        </Routes>
+            {/* Private Route */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard/*" element={<Dashboard />} />
+              <Route path="/admin/*" element={<AdminDashboard />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </Router>
     </>
   );

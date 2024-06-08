@@ -35,7 +35,7 @@
   padding: 1rem;
 
   border-radius: 5px;
-  background-color: var(--color-white);
+  background-color: #ffff;
   backdrop-filter: blur(40px);
   cursor: pointer;
   transition: 0.3s;
@@ -82,7 +82,7 @@
   padding: 1rem;
 
   border-radius: 5px;
-  background-color: var(--color-white);
+  background-color: #fff;
   backdrop-filter: blur(40px);
   cursor: pointer;
   transition: 0.3s;

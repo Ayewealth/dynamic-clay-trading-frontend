@@ -1,18 +1,30 @@
+import { Alert, CircularProgress } from '@mui/material'
 import { Key, Mail, UserCheck } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 const Login = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [showpassword, setShowPassword] = useState(false)
+
+    const { email, setEmail, password, setPassword, loading, loginUser, setShowAlert, showAlert, alertMessage, alertSeverity, } = useContext(AuthContext)
+
 
     const handleShowPassword = () => {
         setShowPassword(prev => !prev)
     }
     return (
         <div className='auth'>
+            {showAlert && (
+                <Alert
+                    severity={alertSeverity}
+                    onClose={() => setShowAlert(false)}
+                    style={{ position: 'fixed', top: "2%", right: "5%", zIndex: 9999, width: "40%" }}
+                >
+                    {alertMessage}
+                </Alert>
+            )}
             <div className="register__container">
                 <h2>User Login</h2>
 
@@ -33,12 +45,16 @@ const Login = () => {
 
                         </div>
                     </div>
-                    <button>Sign in</button>
+                    <button onClick={loginUser}>
+                        {loading ? (
+                            <CircularProgress color="inherit" size="20px" />
+                        ) : "Sign in"}
+                    </button>
                 </form>
                 <div className='forget__password'>
                     <Link>Forgot Password ?</Link>
                 </div>
-                <p className='auth__switch'>Don't have an account? <Link to="/login">Sign up</Link></p>
+                <p className='auth__switch'>Don't have an account? <Link to="/register">Sign up</Link></p>
             </div>
         </div>
     )
