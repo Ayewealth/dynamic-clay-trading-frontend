@@ -37,17 +37,20 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       e.preventDefault();
-      let response = await fetch("http://127.0.0.1:8000/api/signup/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          full_name: fullname,
-          email: email,
-          password: password,
-        }),
-      });
+      let response = await fetch(
+        "https://dynamic-clay-trading.onrender.com/api/signup/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            full_name: fullname,
+            email: email,
+            password: password,
+          }),
+        }
+      );
       // const data = await response.json();
 
       if (response.status === 201) {
@@ -71,16 +74,19 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       e.preventDefault();
-      let response = await fetch("http://127.0.0.1:8000/api/signin/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      let response = await fetch(
+        "https://dynamic-clay-trading.onrender.com/api/signin/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
       const data = await response.json();
       console.log(data);
 
@@ -113,7 +119,7 @@ export const AuthProvider = ({ children }) => {
   const userDetails = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/user_profile/${authTokens.user_id}`,
+        `https://dynamic-clay-trading.onrender.com/api/user_profile/${authTokens.user_id}/`,
         {
           method: "GET",
           headers: {
@@ -133,12 +139,15 @@ export const AuthProvider = ({ children }) => {
 
   const allUsersDetails = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/user_profile/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://dynamic-clay-trading.onrender.com/api/user_profile/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -152,13 +161,16 @@ export const AuthProvider = ({ children }) => {
 
   const allUsersTransactions = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/transaction/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-      });
+      const response = await fetch(
+        "https://dynamic-clay-trading.onrender.com/api/transaction/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authTokens.access}`,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -172,12 +184,15 @@ export const AuthProvider = ({ children }) => {
 
   const allInvestment = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/investment/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://dynamic-clay-trading.onrender.com/api/investment/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -200,13 +215,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateToken = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ refresh: authTokens?.refresh }),
-    });
+    let response = await fetch(
+      "https://dynamic-clay-trading.onrender.com/api/token/refresh/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ refresh: authTokens?.refresh }),
+      }
+    );
     const data = await response.json();
 
     if (response.status === 200) {

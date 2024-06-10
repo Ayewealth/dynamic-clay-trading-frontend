@@ -48,7 +48,7 @@ const Setting = ({ handleCloseSidebar }) => {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/users/${userProfile.user.id}/`,
+      const response = await fetch(`https://dynamic-clay-trading.onrender.com/api/users/${userProfile.user.id}/`,
         {
           method: "PATCH",
           body: formData,

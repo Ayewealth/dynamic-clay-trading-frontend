@@ -37,7 +37,7 @@ const Investment = ({ handleCloseSidebar }) => {
     try {
       e.preventDefault()
 
-      const response = await fetch("http://127.0.0.1:8000/api/investment_sub/", {
+      const response = await fetch("https://dynamic-clay-trading.onrender.com/api/investment_sub/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

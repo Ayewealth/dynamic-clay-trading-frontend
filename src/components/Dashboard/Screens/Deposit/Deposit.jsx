@@ -24,7 +24,7 @@ const Deposit = ({ handleCloseSidebar }) => {
     try {
       e.preventDefault()
 
-      const response = await fetch("http://127.0.0.1:8000/api/transaction/",
+      const response = await fetch("https://dynamic-clay-trading.onrender.com/api/transaction/",
         {
           method: "POST",
           headers: {
