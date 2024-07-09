@@ -116,6 +116,7 @@ const Deposit = ({ handleCloseSidebar }) => {
             <div className="deposit__container-deposit-inner">
               <label>Wallets:</label>
               <select value={wallet} onChange={(e) => setWallet(e.target.value)}>
+                <option value="">Pick A Wallet</option>
                 {userProfile && userProfile.wallets.map((wallet) => (
                   <option value={wallet.id} key={wallet.id}>{wallet.title}</option>
                 ))}
